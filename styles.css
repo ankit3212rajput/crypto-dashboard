@@ -657,3 +657,19 @@ th {
     grid-template-columns: 90px minmax(0, 1fr) 60px;
   }
 }
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+tbody {
+display: block;
+max-height: 500px;
+overflow-y: scroll;
+}
+
+thead, tbody tr {
+display: table;
+width: 100%;
+table-layout: fixed;
+}
