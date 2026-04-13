@@ -577,3 +577,35 @@ el.textContent = "$" + (caps[sector] / 1e9).toFixed(2) + "B cap";
 }
 
 }
+async function updateNarrativeCaps() {
+
+const categories = {
+AI: "artificial-intelligence",
+RWA: "real-world-assets",
+Oracle: "oracle",
+Gaming: "gaming",
+DeFi: "decentralized-finance-defi",
+Layer1: "layer-1"
+};
+
+const response = await fetch("https://api.coingecko.com/api/v3/coins/categories");
+const data = await response.json();
+
+Object.keys(categories).forEach(name => {
+
+const slug = categories[name];
+
+const category = data.find(c => c.id === slug);
+
+if(category){
+
+const cap = category.market_cap;
+
+document.querySelector(`[data-narrative="${name}"] .cap`).innerText =
+(cap / 1e9).toFixed(2) + "B cap";
+
+}
+
+});
+
+}
