@@ -235,7 +235,7 @@ function renderTable() {
           <td>
             <div class="asset-tag">
               <strong>${asset.name}</strong>
-              <span class="asset-meta">${asset.symbol} · ${asset.coinId}</span>
+              <span class="asset-meta">${asset.symbol} Â· ${asset.coinId}</span>
             </div>
           </td>
           <td>${asset.quantity}</td>
@@ -509,3 +509,32 @@ renderTable();
 renderNarratives();
 syncAllData();
 startAutoRefresh();
+async function loadTopCoins() {
+
+const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1";
+
+const response = await fetch(url);
+const data = await response.json();
+
+const table = document.getElementById("topCoinsTable");
+table.innerHTML = "";
+
+data.forEach((coin, index) => {
+
+const row = `
+<tr>
+<td>${index + 1}</td>
+<td>${coin.name}</td>
+<td>${coin.symbol.toUpperCase()}</td>
+<td>$${coin.current_price}</td>
+<td>${coin.price_change_percentage_24h.toFixed(2)}%</td>
+</tr>
+`;
+
+table.innerHTML += row;
+
+});
+
+}
+
+loadTopCoins();
