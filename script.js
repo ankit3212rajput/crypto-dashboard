@@ -508,6 +508,7 @@ refreshAllBtn.addEventListener("click", syncAllData);
 renderTable();
 renderNarratives();
 syncAllData();
+updateNarrativeCaps();
 startAutoRefresh();
 async function loadTopCoins() {
 
@@ -538,3 +539,41 @@ table.innerHTML += row;
 }
 
 loadTopCoins();
+async function updateNarrativeCaps() {
+
+const allCoins = Object.values(NARRATIVES).flat().join(",");
+
+const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${allCoins}&order=market_cap_desc&sparkline=false`;
+
+const response = await fetch(url);
+const data = await response.json();
+
+const caps = {};
+
+data.forEach(coin => {
+
+for (const [sector, coins] of Object.entries(NARRATIVES)) {
+
+if (coins.includes(coin.id)) {
+
+caps[sector] = (caps[sector] || 0) + coin.market_cap;
+
+}
+
+}
+
+});
+
+for (const sector in caps) {
+
+const el = document.querySelector(`[data-sector="${sector}"] .cap`);
+
+if (el) {
+
+el.textContent = "$" + (caps[sector] / 1e9).toFixed(2) + "B cap";
+
+}
+
+}
+
+}
