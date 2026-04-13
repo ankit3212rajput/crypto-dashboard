@@ -5,12 +5,12 @@ const DONUT_CIRCUMFERENCE = 2 * Math.PI * DONUT_RADIUS;
 const DONUT_COLORS = ["#46e0ff", "#5b8cff", "#7d6bff", "#32d583", "#ffbf5f", "#ff6b7a", "#9be15d", "#00c2ff"];
 
 const NARRATIVES = {
-  AI: ["render-token", "bittensor", "fetch-ai", "the-graph"],
-  RWA: ["ondo-finance", "centrifuge", "pendle", "polymesh"],
-  Oracle: ["chainlink", "pyth-network", "band-protocol", "api3"],
-  Layer1: ["bitcoin", "ethereum", "solana", "sui"],
-  Gaming: ["immutable-x", "gala", "beam-2", "the-sandbox"],
-  DeFi: ["aave", "uniswap", "maker", "lido-dao"],
+AI: ["render-token","fetch-ai","bittensor","arkham","ocean-protocol"],
+RWA: ["ondo-finance","centrifuge","pendle","polymesh"],
+Oracle: ["chainlink","pyth-network","band-protocol","api3"],
+Layer1: ["bitcoin","ethereum","solana","avalanche-2","near","sui"],
+Gaming: ["immutable-x","gala","beam-2","the-sandbox","axie-infinity"],
+DeFi: ["aave","uniswap","maker","lido-dao","curve-dao-token"]
 };
 
 const coinSuggestions = [
